@@ -55,7 +55,7 @@ if use:
 **rank**: //div[@class='main_mask']/h2/span \
 **name**: //div[@class='main_mask']/h2
 ### (2) Modify `items.py`
-```
+``` python
 class ItcastItem(scrapy.Item):
     # define the fields for your item here like:
     # Teacher Name
@@ -68,7 +68,7 @@ class ItcastItem(scrapy.Item):
 ```
 ### (3) Modify `itcast.py` inside spiders folder
 The **parse func** is essential to crawl the data desired\
-```
+``` python
     def parse(self, response):
         # print (response.body)
         node_list = response.xpath("//div[@class='main_mask']")
