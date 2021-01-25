@@ -190,10 +190,10 @@ In [1]: for item in item_list:
 **re()**: Input RegEx and **return list(Unicode)**
 #### **Xpath Expression**
 ```
-/html/head/title: Select <title> in <head> in <HTML>
-/html/head/title/text(): Select the text inside the tag above
-//td: Select all <tag> element
-//div[@class="xxx"]: Select all div which has attribute: class="xxx"
+/html/head/title:         Select <title> in <head> in <HTML>
+/html/head/title/text():  Select the text inside the tag above
+//td:                     Select all <tag> element
+//div[@class="xxx"]:      Select all div which has attribute: class="xxx"
 ```
 
 
