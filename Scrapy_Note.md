@@ -1,6 +1,17 @@
 # Intro Scrapy
 ## Content   
-
+<!-- TOC -->
+- [Intro Scrapy](#intro-scrapy)
+  - [Content](#content)
+  - [$Documentation$](#documentation)
+  - [1. Terminal Command](#1-terminal-command)
+    - [(1) Starting a new Scrapy](#1-starting-a-new-scrapy)
+  - [2. Introduction of Structure](#2-introduction-of-structure)
+  - [3. ITcast Crawler](#3-itcast-crawler)
+    - [(1) Data in Need:](#1-data-in-need)
+    - [(2) Modify `items.py`](#2-modify-itemspy)
+    - [(3) Modify `itcast.py` inside spiders folder](#3-modify-itcastpy-inside-spiders-folder)
+<!-- /TOC -->
 - - -
 ## $Documentation$
 https://docs.scrapy.org/en/latest/
