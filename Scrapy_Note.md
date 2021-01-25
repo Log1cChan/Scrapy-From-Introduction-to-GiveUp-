@@ -1,17 +1,6 @@
 # Intro Scrapy
 ## Content   
-<!-- TOC -->
-- [Intro Scrapy](#intro-scrapy)
-  - [Content](#content)
-  - [$Documentation$](#documentation)
-  - [1. Terminal Command](#1-terminal-command)
-    - [(1) Starting a new Scrapy](#1-starting-a-new-scrapy)
-  - [2. Introduction of Structure](#2-introduction-of-structure)
-  - [3. ITcast Crawler](#3-itcast-crawler)
-    - [(1) Data in Need:](#1-data-in-need)
-    - [(2) Modify `items.py`](#2-modify-itemspy)
-    - [(3) Modify `itcast.py` inside spiders folder](#3-modify-itcastpy-inside-spiders-folder)
-<!-- /TOC -->
+<!-- TOC -->autoauto- [Intro Scrapy](#intro-scrapy)auto    - [Content](#content)auto    - [$Documentation$](#documentation)auto    - [1. Terminal Command](#1-terminal-command)auto        - [(1) Starting a new Scrapy](#1-starting-a-new-scrapy)auto    - [2. Introduction of Structure](#2-introduction-of-structure)auto    - [3. ITcast Crawler](#3-itcast-crawler)auto        - [(1) Data in Need:](#1-data-in-need)auto        - [(2) Modify `items.py`](#2-modify-itemspy)auto        - [(3) Modify `itcast.py` inside spiders folder](#3-modify-itcastpy-inside-spiders-folder)autoauto<!-- /TOC -->
 - - -
 ## $Documentation$
 https://docs.scrapy.org/en/latest/
@@ -55,7 +44,7 @@ e.g.\
 4. **mySpider/pipelines.py**: Pipe file of proj
 5. **mySpider/settings.py**: Setting file of proj
 6. **mySprider/spiders/**: Store your crawler Code\
-
+\
 **yiled func**:\
 if use:
 `yield item` in the end of `items.py`, means you transfer the data to pipelines and next time enter the `items.py`, will execute the lines after it. Different from return: if return, the func will be finished but yield not.\
@@ -102,8 +91,15 @@ The **parse func** is essential to crawl the data desired\
         # return to engine
         return items
 ```
-Can use the command below to generate json file to store the data we get:
-`scrapy crawl itcast -o itcast.json`
+\
+Can use the command below to generate **json csv jsonl xml** file to store the data we get:\
+`scrapy crawl itcast -o itcast.json`\
+`scrapy crawl itcast -o itcast.csv`\
+`scrapy crawl itcast -o itcast.xml`\
+\
+**Website** parse json:\
+http://www.json.cn\
+\
 
 
 
