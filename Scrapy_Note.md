@@ -1,6 +1,6 @@
-# Intro Scrapy
+# Intro to Scrapy
 ## Content   
-- [Intro Scrapy](#intro-scrapy)
+- [Intro to Scrapy](#intro-to-scrapy)
   - [Content](#content)
   - [$Documentation$](#documentation)
   - [1. Terminal Command](#1-terminal-command)
@@ -12,6 +12,12 @@
     - [(3) Modify `itcast.py` inside spiders folder](#3-modify-itcastpy-inside-spiders-folder)
   - [4. ITcast Crawler--pipelines](#4-itcast-crawler--pipelines)
     - [Usage](#usage)
+  - [5. Scrapy Shell](#5-scrapy-shell)
+    - [(1) Start a Scrapy Shell CommandLine](#1-start-a-scrapy-shell-commandline)
+    - [(2) Command in Scrapy Shell](#2-command-in-scrapy-shell)
+    - [(3) Usage](#3-usage)
+      - [**Selectors**](#selectors)
+      - [**Xpath Expression**](#xpath-expression)
 ## $Documentation$
 https://docs.scrapy.org/en/latest/
 - - -
@@ -146,7 +152,48 @@ ITEM_PIPELINES = {
 ```
 \
 `Stressed`: Execute the command in the folder where you wanna put your data in. Like the data folder in this proj\
+- - -
+## 5. Scrapy Shell
+### (1) Start a Scrapy Shell CommandLine
+`scrapy shell "url-link"`\
+e.g.\
+`scrapy shell "http://www.itcast.cn/channel/teacher.shtml"`
+### (2) Command in Scrapy Shell
+```
+[s] Available Scrapy objects:
+[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
+[s]   crawler    <scrapy.crawler.Crawler object at 0x7f8fd73bd820>
+[s]   item       {}
+[s]   request    <GET http://www.itcast.cn/channel/teacher.shtml>
+[s]   response   <200 http://www.itcast.cn/channel/teacher.shtml>
+[s]   settings   <scrapy.settings.Settings object at 0x7f8fd73bd790>
+[s]   spider     <DefaultSpider 'default' at 0x7f8fd77fddf0>
+[s] Useful shortcuts:
+[s]   fetch(url[, redirect=True]) Fetch URL and update local objects (by default, redirects are followed)
+[s]   fetch(req)                  Fetch a scrapy.Request and update local objects 
+[s]   shelp()           Shell help (print this help)
+[s]   view(response)    View response in a browser
+```
+### (3) Usage
+With **Scrapy Shell**, you can crawl the website easily. But the hinge of this Shell is to check if your **programmar** is right or not. After testing, you can use the available statement in your scrapy proj.\
 \
-
+Here is an Example:
+```python
+In [0]: item_list = response.xpath("//h3").extract()
+In [1]: for item in item_list:
+    ...:     print(item)
+```
+#### **Selectors**
+**xpath()**: input the xpath expression, and return a selector list contains all the nodes which are corresponding to the expression\
+**extract()**: Serialize the node to Unicode String and return the list\
+**css()**: Similar to BeatifulSoup4, input css expression and return list\
+**re()**: Input RegEx and **return list(Unicode)**
+#### **Xpath Expression**
+```
+/html/head/title: Select <title> in <head> in <HTML>
+/html/head/title/text(): Select the text inside the tag above
+//td: Select all <tag> element
+//div[@class="xxx"]: Select all div which has attribute: class="xxx"
+```
 
 
