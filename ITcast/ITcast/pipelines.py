@@ -6,8 +6,19 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import json
 
 class ItcastPipeline:
+    # Optional
+    def  __init__(self):
+        self.f = open("itcast_pipeline.json", "w")
+
+    # Get items from itcast.py item [Essential func]
     def process_item(self, item, spider):
+        content = json.dumps(dict(item), ensure_ascii=False) + ", \n" 
+        self.f.write(content)
         return item
+
+    # Optional
+    def close_spider(self, spider):
+        self.f.close

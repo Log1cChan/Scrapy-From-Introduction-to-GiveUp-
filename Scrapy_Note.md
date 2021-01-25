@@ -6,10 +6,12 @@
   - [1. Terminal Command](#1-terminal-command)
     - [(1) Starting a new Scrapy](#1-starting-a-new-scrapy)
   - [2. Introduction of Structure](#2-introduction-of-structure)
-  - [3. ITcast Crawler](#3-itcast-crawler)
+  - [3. ITcast Crawler--Intro](#3-itcast-crawler--intro)
     - [(1) Data in Need:](#1-data-in-need)
     - [(2) Modify `items.py`](#2-modify-itemspy)
     - [(3) Modify `itcast.py` inside spiders folder](#3-modify-itcastpy-inside-spiders-folder)
+  - [4. ITcast Crawler--pipelines](#4-itcast-crawler--pipelines)
+    - [Usage](#usage)
 ## $Documentation$
 https://docs.scrapy.org/en/latest/
 - - -
@@ -57,7 +59,7 @@ e.g.\
 if use:
 `yield item` in the end of `items.py`, means you transfer the data to pipelines and next time enter the `items.py`, will execute the lines after it. Different from return: if return, the func will be finished but yield not.\
 - - -
-## 3. ITcast Crawler
+## 3. ITcast Crawler--Intro
 ### (1) Data in Need:
 **info**: //div[@class='main_mask']/p  \
 **rank**: //div[@class='main_mask']/h2/span \
@@ -107,6 +109,43 @@ Can use the command below to generate **json csv jsonl xml** file to store the d
 \
 **Website** parse json:\
 http://www.json.cn\
+- - - 
+## 4. ITcast Crawler--pipelines
+### Usage
+In `itcast.py`, change the `return` to `yield` in the loop:\
+`yield item`\
+\
+Then modify **`pipelines.py`**\
+```python
+from itemadapter import ItemAdapter
+import json
+
+class ItcastPipeline:
+    # Optional
+    def  __init__(self):
+        self.f = open("itcast_pipeline.json", "w")
+
+    # Get items from itcast.py item [Essential func]
+    def process_item(self, item, spider):
+        content = json.dumps(dict(item), ensure_ascii=False)
+        self.f.write(content)
+        return item
+
+    # Optional
+    def close_spider(self, spider):
+        self.f.close
+```
+\
+Then Enable `**settings.py**`\
+```python
+# Configure item pipelines
+# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+   'ITcast.pipelines.ItcastPipeline': 300, # The number here means priority small-->high prio
+}
+```
+\
+`Stressed`: Execute the command in the folder where you wanna put your data in. Like the data folder in this proj\
 \
 
 

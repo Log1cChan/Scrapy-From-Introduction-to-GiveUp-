@@ -7,6 +7,7 @@ class ItcastSpider(scrapy.Spider):
     # Crawler Name essential
     name = 'itcast'
     allowed_domains = ['http://www.itcast.cn']  # Optional param
+    # NO MORE THAN 16 URLS
     start_urls = ['http://www.itcast.cn/channel/teacher.shtml'] # essential param
 
     def parse(self, response):
@@ -14,7 +15,7 @@ class ItcastSpider(scrapy.Spider):
         node_list = response.xpath("//div[@class='main_mask']")
 
         # Store all the item
-        items = []
+        # items = []
 
         for node in node_list:
             # Create item for storing data
@@ -27,7 +28,15 @@ class ItcastSpider(scrapy.Spider):
             item['name'] = (name[0])
             item['title'] = (title[0])
             item['info'] = (info[0])
-            items.append(item)
-        # return to engine
-        return items
+            # items.append(item)
+
+            # Return every item data, and Transfer data to pipelines
+            # Meanwhile go back an execute the code followed
+            yield item
+
+        # return to engine, dont through pipelines
+        # return items
+        
+        # return scrapy.Request(url)
+
         # pass
