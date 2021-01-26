@@ -18,6 +18,9 @@
     - [(3) Usage](#3-usage)
       - [**Selectors**](#selectors)
       - [**Xpath Expression**](#xpath-expression)
+  - [6. Spider](#6-spider)
+    - [(1) Basics](#1-basics)
+      - [Func and Func Call](#func-and-func-call)
 ## $Documentation$
 https://docs.scrapy.org/en/latest/
 - - -
@@ -195,5 +198,13 @@ In [1]: for item in item_list:
 //td:                     Select all <tag> element
 //div[@class="xxx"]:      Select all div which has attribute: class="xxx"
 ```
+## 6. Spider
+### (1) Basics
+`class scrapy.Spider`is the most basic Class, All the crawler must inherit this Class.\
+Like the file `itcast.py` in this proj.
+#### Func and Func Call
+`__init__()`: initialize the name of crawler and start_urls list\
+`start_requests()` call `make_requests_from_url()`: generate Requests object and transfer to Scrapy to Download and return response\
+`parse()`: parse response and return Item or Requests.\
 
 
